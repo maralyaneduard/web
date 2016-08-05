@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">
+            <ui:define name="content">
+                <h:form prependId="false" id="editForm" style="display: block">                 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                                <div class="panel panel-info siteBorder">
+                                    <div class="panel-heading siteBackground">
+                                        <h3 class="panel-title">#{sessionContext.user.username}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-3 " align="center">
+                                                <p:graphicImage url="/ImagePreview?userId=#{sessionContext.user.id}" styleClass="img-circle img-responsive"/>
+                                            </div>
+                                            <div class=" col-md-9 col-lg-9 "> 
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>First name</td>
+                                                            <td ><input style="width:200px" type="text" jsf:required="true" jsf:id="firstname" jsf:value="#{userManagedBean.user.firstname}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last name</td>
+                                                            <td style="width:200px"><input style="width:200px" type="text" jsf:required="true" jsf:id="lastname" jsf:value="#{userManagedBean.user.lastname}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Username</td>
+                                                            <td style="width:200px"><input style="width:200px" type="text" jsf:required="true" jsf:id="username" jsf:value="#{userManagedBean.user.username}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email address</td>
+                                                            <td style="width:200px"><input style="width:200px" type="text" jsf:required="true" jsf:id="email" jsf:value="#{userManagedBean.user.email}"/></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <h:commandButton action="#{userManagedBean.updateUser()}" value="Save" styleClass="form-control btn btn-login"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

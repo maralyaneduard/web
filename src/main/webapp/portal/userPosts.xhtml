@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h3 style="margin-left: 135px">Posts of #{sessionContext.user.username}</h3>
+                    <div id="postlist">
+                        <ui:repeat value="#{userPostManagedBean.postList}" var="post">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <div class="text-center">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                <h3 class="pull-left">#{post.title}</h3>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h4 class="pull-right">
+                                                    <small><em>#{post.postedDate}</em></small>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <p>#{post.content}</p> 
+                                    <h:link style="color: #4285f4;" value="Read more " outcome="postContent" >
+                                        <f:param name="postId" value="#{post.id}" />
+                                    </h:link>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="label label-default" title="status">#{post.status}</span>
+                                    <span style="margin-left:5px" class="label label-default" title="rating">#{post.rating}</span>
+                                    <h:commandLink value="Delete" 
+                                        onclick="if (!confirm('are you sure to delete?'))
+                                                {
+                                                    return false;
+                                                }" 
+                                        action="#{userPostManagedBean.delete(post.id)}" styleClass="btn btn-sm btn-danger" style="float: right;margin-left:10px"/>
+                                    <h:link class="btn btn-sm btn-warning" style="float:right;margin-left:15px;" value="Edit" outcome="postContentEdit" >
+                                        <f:param name="postId" value="#{post.id}" />
+                                    </h:link>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

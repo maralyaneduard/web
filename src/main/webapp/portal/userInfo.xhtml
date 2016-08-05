@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                                <div class="panel panel-info siteBorder">
+                                    <div class="panel-heading siteBackground">
+                                        <h3 class="panel-title">#{userInfoManagedBean.userDto.username}</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-3 " align="center">
+                                                <p:graphicImage url="/ImagePreview?userId=#{userInfoManagedBean.user.id}" styleClass="img-circle img-responsive"/>
+                                            </div>
+                                            <div class=" col-md-9 col-lg-9 "> 
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>First name</td>
+                                                            <td>#{userInfoManagedBean.userDto.firstname}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last name</td>
+                                                            <td>#{userInfoManagedBean.userDto.lastname}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Registered date</td>
+                                                            <td>#{userInfoManagedBean.userDto.registeredDate}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email address</td>
+                                                            <td>#{userInfoManagedBean.userDto.email}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Role</td>
+                                                            <td>#{userInfoManagedBean.userDto.role eq 1? "admin" : "user" }</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Posts count</td>
+                                                            <td>
+                                                                <h:outputLink value="userPosts.jsf">
+                                                                    #{userInfoManagedBean.postCount}
+                                                                </h:outputLink>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <h:outputLink value="userEdit.jsf" class="btn btn-sm btn-warning">Edit</h:outputLink>
+                                        <h:commandLink value="Delete" 
+                                                       onclick="if (!confirm('are you sure to delete?'))
+                                                               {
+                                                                   return false;
+                                                               }" action="#{userManagedBean.deleteUser()}" style="margin-left:7px;" styleClass="btn btn-sm btn-danger"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

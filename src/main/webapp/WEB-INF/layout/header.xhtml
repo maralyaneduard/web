@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition>
+            <h:form>
+                <div class="container">
+                    <div class="row">
+                        <div class="card">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" ><h:outputLink value="index.jsf" rendered="true">Home</h:outputLink></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Actions<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><h:outputLink value="userPosts.jsf">User posts</h:outputLink></li>
+                                        <li><h:outputLink value="createNewPost.jsf">Create new post</h:outputLink></li>
+                                    </ul>
+                                </li>
+                                <li role="presentation" class="userInfo"><h:outputLink value="login.jsf" rendered="#{sessionContext.user.id == null}">login</h:outputLink></li>
+                                <li role="presentation" class="userInfo"><h:commandLink rendered="#{!(sessionContext.user.id == null)}" value="" action="#{userManagedBean.logoutUser()}">logout</h:commandLink></li>
+                                <li role="presentation" class="userInfo"><h:outputLink value="userInfo.jsf" rendered="#{!(sessionContext.user.id == null)}">#{sessionContext.user.username}</h:outputLink></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:composition>
+    </body>
+</html>

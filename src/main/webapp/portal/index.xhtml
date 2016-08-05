@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">
+            <ui:define name="content">
+                <div id="searchMainContent">
+                    <h:form id="searchForm">
+                        <div id="searchTitleDiv">
+                            <h1>Announcement Portal</h1>
+                        </div>
+                        <div id="searchDiv">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" jsf:required="true" class="form-control input-lg" jsf:id="title" placeholder="Post title" jsf:value="#{postManagedBean.title}"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-lg" type="button">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="buttonDiv" class='center'>
+                            <h:commandButton id="search" action="#{postManagedBean.search}" value="Search" styleClass="form-control btn searchButton"/>
+                            <h:message class="error" for="search" id="newSearchError" />
+                        </div>
+                    </h:form>
+                    <h:form style="text-align: center">
+                        <h:commandButton action="#{postManagedBean.searchLucky}" value="I'm felling lucky" styleClass="form-control btn luckyButton"/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <f:view contracts="default" transient="false">
+        <ui:composition template="/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <label>Enter post title</label><br/>
+                                    <input style="width:120px;" type="textare" jsf:required="true" jsf:id="postTitle" jsf:value="#{postContentEditManagedBean.post.title}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <label>Enter post content</label><br/>
+                            <h:inputTextarea value="#{postContentEditManagedBean.post.content}" cols="30" rows="10" />
+                        </div>
+                        <div class="panel-footer">
+                            <span class="label label-default" title="status">
+                                <h:selectOneMenu styleClass="dropdownStatus" value="#{postContentEditManagedBean.status}">
+                                    <f:selectItems value="#{postContentEditManagedBean.statusList}" var="status"
+                                                   itemLabel="#{status}" itemValue="#{status}" />
+                                </h:selectOneMenu>
+                            </span>
+                            <h:commandButton action="#{postContentEditManagedBean.addPost()}" value="Save" styleClass="btn btn-sm btn-success" style="float: right"/>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </f:view>
+</html>
